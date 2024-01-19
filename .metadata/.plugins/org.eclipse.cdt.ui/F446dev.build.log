@@ -1,0 +1,98 @@
+23:53:52 **** Incremental Build of configuration Debug for project F446dev ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F446xx -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
+../Core/Src/stm32f4xx_it.c: In function 'USART2_IRQHandler':
+../Core/Src/stm32f4xx_it.c:243:33: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  243 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                 ^~~~~~~
+../Core/Src/stm32f4xx_it.c:23:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   22 | #include "stm32f4xx_it.h"
+  +++ |+#include <stdio.h>
+   23 | /* Private includes ----------------------------------------------------------*/
+../Core/Src/stm32f4xx_it.c:243:33: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  243 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                 ^~~~~~~
+../Core/Src/stm32f4xx_it.c:243:33: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/stm32f4xx_it.c:243:41: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  243 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                         ^~~~~~
+      |                                         |
+      |                                         uint8_t * {aka unsigned char *}
+../Core/Src/stm32f4xx_it.c:243:41: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/stm32f4xx_it.c:243:49: warning: too many arguments for format [-Wformat-extra-args]
+  243 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                                 ^~~~~~~~~~~
+../Core/Src/stm32f4xx_it.c:251:33: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  251 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                 ^~~~~~~
+../Core/Src/stm32f4xx_it.c:251:33: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/stm32f4xx_it.c:251:41: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  251 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                         ^~~~~~
+      |                                         |
+      |                                         uint8_t * {aka unsigned char *}
+../Core/Src/stm32f4xx_it.c:251:41: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/stm32f4xx_it.c:251:49: warning: too many arguments for format [-Wformat-extra-args]
+  251 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                                 ^~~~~~~~~~~
+../Core/Src/stm32f4xx_it.c:256:25: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  256 |                         sprintf(buffer, "Throttle: %d, Steering: %d\r\n", buffer[1], buffer[2]);
+      |                         ^~~~~~~
+../Core/Src/stm32f4xx_it.c:256:25: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/stm32f4xx_it.c:256:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  256 |                         sprintf(buffer, "Throttle: %d, Steering: %d\r\n", buffer[1], buffer[2]);
+      |                                 ^~~~~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/stm32f4xx_it.c:256:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/stm32f4xx_it.c: In function 'USART3_IRQHandler':
+../Core/Src/stm32f4xx_it.c:343:33: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  343 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                 ^~~~~~~
+../Core/Src/stm32f4xx_it.c:343:33: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/stm32f4xx_it.c:343:41: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  343 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                         ^~~~~~
+      |                                         |
+      |                                         uint8_t * {aka unsigned char *}
+../Core/Src/stm32f4xx_it.c:343:41: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/stm32f4xx_it.c:343:49: warning: too many arguments for format [-Wformat-extra-args]
+  343 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                                 ^~~~~~~~~~~
+../Core/Src/stm32f4xx_it.c:351:33: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  351 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                 ^~~~~~~
+../Core/Src/stm32f4xx_it.c:351:33: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/stm32f4xx_it.c:351:41: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  351 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                         ^~~~~~
+      |                                         |
+      |                                         uint8_t * {aka unsigned char *}
+../Core/Src/stm32f4xx_it.c:351:41: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/stm32f4xx_it.c:351:49: warning: too many arguments for format [-Wformat-extra-args]
+  351 |                                 sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
+      |                                                 ^~~~~~~~~~~
+../Core/Src/stm32f4xx_it.c:356:25: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  356 |                         sprintf(buffer, "Throttle: %d, Steering: %d\r\n", buffer[1], buffer[2]);
+      |                         ^~~~~~~
+../Core/Src/stm32f4xx_it.c:356:25: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/stm32f4xx_it.c:356:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  356 |                         sprintf(buffer, "Throttle: %d, Steering: %d\r\n", buffer[1], buffer[2]);
+      |                                 ^~~~~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/stm32f4xx_it.c:356:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+arm-none-eabi-gcc -o "F446dev.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/benjaminowen/STM32CubeIDE/workspace_1.14.0/F446dev/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F446dev.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: F446dev.elf
+ 
+arm-none-eabi-size  F446dev.elf 
+arm-none-eabi-objdump -h -S F446dev.elf  > "F446dev.list"
+   text	   data	    bss	    dec	    hex	filename
+  13452	    100	   2164	  15716	   3d64	F446dev.elf
+Finished building: default.size.stdout
+ 
+Finished building: F446dev.list
+ 
+
+23:53:53 Build Finished. 0 errors, 17 warnings. (took 732ms)
+
