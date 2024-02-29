@@ -60,8 +60,8 @@ all: main-build
 main-build: F446dev.elf secondary-outputs
 
 # Tool invocations
-F446dev.elf F446dev.map: $(OBJS) $(USER_OBJS) /home/benjaminowen/STM32CubeIDE/workspace_1.14.0/F446dev/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "F446dev.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/benjaminowen/STM32CubeIDE/workspace_1.14.0/F446dev/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F446dev.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+F446dev.elf F446dev.map: $(OBJS) $(USER_OBJS) /home/benjaminowen/F446-UART/F446dev/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "F446dev.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/benjaminowen/F446-UART/F446dev/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F446dev.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

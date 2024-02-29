@@ -22,6 +22,8 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -186,7 +188,7 @@ void SysTick_Handler(void)
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
   /* USER CODE END SysTick_IRQn 0 */
-  HAL_IncTick();
+
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
   /* USER CODE END SysTick_IRQn 1 */
@@ -208,112 +210,13 @@ void DMA1_Stream6_IRQHandler(void)
 	if (LL_DMA_IsActiveFlag_TC6(DMA1))
 	{
 		LL_DMA_ClearFlag_TC6(DMA1);
+		memset(buffer, 0, sizeof(buffer));
 	}
   /* USER CODE END DMA1_Stream6_IRQn 0 */
 
   /* USER CODE BEGIN DMA1_Stream6_IRQn 1 */
 
   /* USER CODE END DMA1_Stream6_IRQn 1 */
-}
-
-/**
-  * @brief This function handles USART2 global interrupt.
-  */
-void USART2_IRQHandler(void)
-{
-  /* USER CODE BEGIN USART2_IRQn 0 */
-	if (LL_USART_IsActiveFlag_RXNE(USART2))
-	{
-		LL_USART_ClearFlag_RXNE(USART2);
-
-		buffer[size] = LL_USART_ReceiveData8(USART2);
-		size++;
-
-		if (LL_USART_IsActiveFlag_ORE(USART2) || LL_USART_IsActiveFlag_FE(USART2) || LL_USART_IsActiveFlag_PE(USART2))
-		{
-			// overrun error, framing error, or parity error
-			buffer[0] = 0;
-		}
-
-		if (buffer[size - 1] == 13) // end of text // TODO should be 2
-		{
-			// TODO check values and make sure they are valid
-			if (buffer[0] != 32) // start of text // TODO should be 3
-			{
-				sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
-				LL_DMA_EnableStream(DMA1, LL_DMA_STREAM_6);
-				size = 0;
-				return;
-			}
-
-			if (buffer[2 + 1] != 13) // end of text // TODO should be 2
-			{
-				sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
-				size = 0;
-				return;
-			}
-
-			sprintf(buffer, "Throttle: %d, Steering: %d\r\n", buffer[1], buffer[2]);
-			LL_DMA_EnableStream(DMA1, LL_DMA_STREAM_6);
-			size = 0;
-		}
-	}
-//		sprintf(buffer, "%d\r\n", curr_byte);
-
-//		LL_DMA_EnableStream(DMA1, LL_DMA_STREAM_6);
-
-//		LL_USART_EnableDMAReq_TX(USART2);
-//		LL_USART_TransmitData8(USART2, (uint8_t) buffer[0]);
-//		while (!LL_USART_IsActiveFlag_TXE(USART2));
-//		LL_USART_TransmitData8(USART2, (uint8_t) buffer[1]);
-//		while (!LL_USART_IsActiveFlag_TXE(USART2));
-//		LL_USART_TransmitData8(USART2, (uint8_t) buffer[2]);
-//		while (!LL_USART_IsActiveFlag_TXE(USART2));
-//		LL_USART_TransmitData8(USART2, (uint8_t) '\r');
-//		while (!LL_USART_IsActiveFlag_TXE(USART2));
-//		LL_USART_TransmitData8(USART2, (uint8_t) '\n');
-//		while (!LL_USART_IsActiveFlag_TXE(USART2));
-
-//		if ((curr_byte >= 32) && (curr_byte <= 126))
-//		{
-//			buffer[size] = curr_byte;
-//			size++;
-//
-//			LL_USART_TransmitData8(USART2, (uint8_t) '\r');
-//			while (!LL_USART_IsActiveFlag_TXE(USART2));
-//			for (int i = 0; i < size; i++)
-//			{
-//				LL_USART_TransmitData8(USART2, buffer[i]);
-//				while (!LL_USART_IsActiveFlag_TXE(USART2));
-//			}
-//		}
-//		if (curr_byte == '\r')
-//		{
-//			// enter key pressed
-//			LL_USART_TransmitData8(USART2, (uint8_t) '\r');
-//			while (!LL_USART_IsActiveFlag_TXE(USART2));
-//			LL_USART_TransmitData8(USART2, (uint8_t) '\n');
-//			while (!LL_USART_IsActiveFlag_TXE(USART2));
-//			LL_USART_TransmitData8(USART2, (uint8_t) '>');
-//			while (!LL_USART_IsActiveFlag_TXE(USART2));
-//			LL_USART_TransmitData8(USART2, (uint8_t) ' ');
-//			while (!LL_USART_IsActiveFlag_TXE(USART2));
-//			for (int i = 0; i < size; i++)
-//			{
-//				LL_USART_TransmitData8(USART2, buffer[i]);
-//				while (!LL_USART_IsActiveFlag_TXE(USART2));
-//			}
-//			LL_USART_TransmitData8(USART2, (uint8_t) '\r');
-//			while (!LL_USART_IsActiveFlag_TXE(USART2));
-//			LL_USART_TransmitData8(USART2, (uint8_t) '\n');
-//			while (!LL_USART_IsActiveFlag_TXE(USART2));
-//			size = 0;
-//		}
-//	}
-  /* USER CODE END USART2_IRQn 0 */
-  /* USER CODE BEGIN USART2_IRQn 1 */
-
-  /* USER CODE END USART2_IRQn 1 */
 }
 
 /**
@@ -327,33 +230,25 @@ void USART3_IRQHandler(void)
 		LL_USART_ClearFlag_RXNE(USART3);
 
 		buffer[size] = LL_USART_ReceiveData8(USART3);
+
+		if ((size == 0) && (buffer[0] != 'A'))
+		{
+			return;
+		}
 		size++;
 
 		if (LL_USART_IsActiveFlag_ORE(USART3) || LL_USART_IsActiveFlag_FE(USART3) || LL_USART_IsActiveFlag_PE(USART3))
 		{
 			// overrun error, framing error, or parity error
 			buffer[0] = 0;
+			size = 0;
 		}
 
-		if (buffer[size - 1] == 13) // end of text // TODO should be 2
+		// TODO check size instead of end character
+		if (size == 3)
 		{
 			// TODO check values and make sure they are valid
-			if (buffer[0] != 32) // start of text // TODO should be 3
-			{
-				sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
-				LL_DMA_EnableStream(DMA1, LL_DMA_STREAM_6);
-				size = 0;
-				return;
-			}
-
-			if (buffer[2 + 1] != 13) // end of text // TODO should be 2
-			{
-				sprintf(buffer, "ERROR\r\n", buffer[1], buffer[2]);
-				size = 0;
-				return;
-			}
-
-			sprintf(buffer, "Throttle: %d, Steering: %d\r\n", buffer[1], buffer[2]);
+			sprintf((char *) buffer, "Throttle: %d, Steering: %d\r\n", buffer[1], buffer[2]);
 			LL_DMA_EnableStream(DMA1, LL_DMA_STREAM_6);
 			size = 0;
 		}
