@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stm32f4xx_it.h"
+#include "LoRa.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -40,6 +41,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+SPI_HandleTypeDef hspi2;
 
 /* USER CODE BEGIN PV */
 
@@ -75,11 +77,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_SYSCFG);
-  LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
-
-  /* System interrupt init*/
-  NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_0);
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -113,15 +111,51 @@ int main(void)
 	  while (!LL_USART_IsActiveFlag_TXE(USART2));
   }
 
+  LoRa myLoRa;
+  myLoRa = newLoRa();
+
+  myLoRa.CS_port = SPI2_CS_GPIO_Port;
+  myLoRa.CS_pin = SPI2_CS_Pin;
+  myLoRa.reset_port = RFM_RST_GPIO_Port;
+  myLoRa.reset_pin = RFM_RST_Pin;
+  myLoRa.DIO0_port = RFM_G0_GPIO_Port;
+  myLoRa.DIO0_pin = RFM_G0_Pin;
+  myLoRa.hSPIx = &hspi2;
+
+  myLoRa.frequency = 915;
+
+  LoRa_reset(&myLoRa);
+  uint16_t lora_status = LoRa_init(&myLoRa);
+  if (lora_status == LORA_OK)
+  {
+  	  uint8_t msg[] = "LoRa OK\r\n";
+  	  //  HAL_UART_Transmit_IT(&huart2, welcome_msg, sizeof(welcome_msg));
+  	  for (int i = 0; i < sizeof(msg); i++)
+  	  {
+  		  LL_USART_TransmitData8(USART2, msg[i]);
+  		  while (!LL_USART_IsActiveFlag_TXE(USART2));
+  	  }
+  }
+  else
+  {
+  	  uint8_t msg[] = "LoRa FAILED\r\n";
+  	  //  HAL_UART_Transmit_IT(&huart2, welcome_msg, sizeof(welcome_msg));
+  	  for (int i = 0; i < sizeof(msg); i++)
+  	  {
+  		  LL_USART_TransmitData8(USART2, msg[i]);
+  		  while (!LL_USART_IsActiveFlag_TXE(USART2));
+  	  }
+  }
+
   // read version number from RFM95W
-  LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_3); // RFM95W RST
+//  LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_3); // RFM95W RST
 //  LL_GPIO_ResetOutputPin(GPIOB, LL_GPIO_PIN_12); // SPI2 CS
-  uint16_t RFM95_REGISTER_VERSION = 0x42 << 8;
-  LL_SPI_TransmitData16(SPI2, RFM95_REGISTER_VERSION);
+//  uint16_t RFM95_REGISTER_VERSION = 0x42 << 8;
+//  LL_SPI_TransmitData16(SPI2, RFM95_REGISTER_VERSION);
 //  LL_GPIO_SetOutputPin(GPIOA, LL_GPIO_PIN_5);
-  uint8_t recv_data = LL_SPI_ReceiveData8(SPI2);
+//  uint8_t recv_data = LL_SPI_ReceiveData8(SPI2);
 //  LL_GPIO_SetOutputPin(GPIOB, LL_GPIO_PIN_12); // SPI2 CS
-  printf(recv_data);
+//  printf(recv_data);
 
   while (1)
   {
@@ -173,8 +207,13 @@ void SystemClock_Config(void)
   {
 
   }
-  LL_Init1msTick(180000000);
   LL_SetSystemCoreClock(180000000);
+
+   /* Update the time base */
+  if (HAL_InitTick (TICK_INT_PRIORITY) != HAL_OK)
+  {
+    Error_Handler();
+  }
   LL_RCC_SetTIMPrescaler(LL_RCC_TIM_PRESCALER_TWICE);
 }
 
@@ -190,71 +229,28 @@ static void MX_SPI2_Init(void)
 
   /* USER CODE END SPI2_Init 0 */
 
-  LL_SPI_InitTypeDef SPI_InitStruct = {0};
-
-  LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-  /* Peripheral clock enable */
-  LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_SPI2);
-
-  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
-  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
-  /**SPI2 GPIO Configuration
-  PC1   ------> SPI2_MOSI
-  PC2   ------> SPI2_MISO
-  PB13   ------> SPI2_SCK
-  PB4   ------> SPI2_NSS
-  */
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_1;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-  GPIO_InitStruct.Alternate = LL_GPIO_AF_7;
-  LL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_2;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-  GPIO_InitStruct.Alternate = LL_GPIO_AF_5;
-  LL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_13;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-  GPIO_InitStruct.Alternate = LL_GPIO_AF_5;
-  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_4;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-  GPIO_InitStruct.Alternate = LL_GPIO_AF_7;
-  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
   /* USER CODE BEGIN SPI2_Init 1 */
 
   /* USER CODE END SPI2_Init 1 */
   /* SPI2 parameter configuration*/
-  SPI_InitStruct.TransferDirection = LL_SPI_FULL_DUPLEX;
-  SPI_InitStruct.Mode = LL_SPI_MODE_MASTER;
-  SPI_InitStruct.DataWidth = LL_SPI_DATAWIDTH_16BIT;
-  SPI_InitStruct.ClockPolarity = LL_SPI_POLARITY_LOW;
-  SPI_InitStruct.ClockPhase = LL_SPI_PHASE_1EDGE;
-  SPI_InitStruct.NSS = LL_SPI_NSS_HARD_OUTPUT;
-  SPI_InitStruct.BaudRate = LL_SPI_BAUDRATEPRESCALER_DIV256;
-  SPI_InitStruct.BitOrder = LL_SPI_MSB_FIRST;
-  SPI_InitStruct.CRCCalculation = LL_SPI_CRCCALCULATION_DISABLE;
-  SPI_InitStruct.CRCPoly = 10;
-  LL_SPI_Init(SPI2, &SPI_InitStruct);
-  LL_SPI_SetStandard(SPI2, LL_SPI_PROTOCOL_MOTOROLA);
+  hspi2.Instance = SPI2;
+  hspi2.Init.Mode = SPI_MODE_MASTER;
+  hspi2.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi2.Init.NSS = SPI_NSS_SOFT;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
+  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi2.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi2) != HAL_OK)
+  {
+    Error_Handler();
+  }
   /* USER CODE BEGIN SPI2_Init 2 */
-  LL_SPI_Enable(SPI2);
+//  LL_SPI_Enable(SPI2);
   /* USER CODE END SPI2_Init 2 */
 
 }
@@ -499,13 +495,13 @@ static void MX_GPIO_Init(void)
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
 
   /**/
-  LL_GPIO_ResetOutputPin(RFM_RST_GPIO_Port, RFM_RST_Pin);
+  LL_GPIO_SetOutputPin(RFM_RST_GPIO_Port, RFM_RST_Pin);
+
+  /**/
+  LL_GPIO_SetOutputPin(SPI2_CS_GPIO_Port, SPI2_CS_Pin);
 
   /**/
   LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
-
-  /**/
-  LL_GPIO_ResetOutputPin(SPI2_CS_GPIO_Port, SPI2_CS_Pin);
 
   /**/
   LL_SYSCFG_SetEXTISource(LL_SYSCFG_EXTI_PORTC, LL_SYSCFG_EXTI_LINE13);
@@ -542,7 +538,7 @@ static void MX_GPIO_Init(void)
   /**/
   GPIO_InitStruct.Pin = RFM_RST_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   LL_GPIO_Init(RFM_RST_GPIO_Port, &GPIO_InitStruct);
@@ -558,7 +554,7 @@ static void MX_GPIO_Init(void)
   /**/
   GPIO_InitStruct.Pin = SPI2_CS_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   LL_GPIO_Init(SPI2_CS_GPIO_Port, &GPIO_InitStruct);
