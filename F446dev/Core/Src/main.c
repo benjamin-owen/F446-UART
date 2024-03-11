@@ -157,8 +157,41 @@ int main(void)
 //  LL_GPIO_SetOutputPin(GPIOB, LL_GPIO_PIN_12); // SPI2 CS
 //  printf(recv_data);
 
+  uint8_t recv_data[200];
+  uint8_t packet_size;
+  LoRa_startReceiving(&myLoRa);
   while (1)
   {
+	  LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
+	  packet_size = LoRa_receive(&myLoRa, recv_data, 8);
+	  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
+	  if (packet_size > 0)
+	  {
+		  // data was received
+		  for (int i = 0; i < packet_size; i++)
+		  {
+			  LL_USART_TransmitData8(USART2, recv_data[i]);
+			  while (!LL_USART_IsActiveFlag_TXE(USART2));
+		  }
+
+		  uint8_t msg[] = "\r\n";
+		  for (int i = 0; i < sizeof(msg); i++)
+		  {
+			  LL_USART_TransmitData8(USART2, msg[i]);
+			  while (!LL_USART_IsActiveFlag_TXE(USART2));
+		  }
+	  }
+	  else
+	  {
+		  uint8_t msg[] = "Nothing received!\r\n";
+		  //  HAL_UART_Transmit_IT(&huart2, welcome_msg, sizeof(welcome_msg));
+		  for (int i = 0; i < sizeof(msg); i++)
+		  {
+			  LL_USART_TransmitData8(USART2, msg[i]);
+			  while (!LL_USART_IsActiveFlag_TXE(USART2));
+		  }
+	  }
+	  HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

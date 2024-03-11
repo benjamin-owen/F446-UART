@@ -1,0 +1,10 @@
+17:46:50 **** Incremental Build of configuration Debug for project F446dev-remote ****
+make -j8 all 
+arm-none-eabi-size  F446dev-remote.elf 
+   text	   data	    bss	    dec	    hex	filename
+  18404	    100	   2004	  20508	   501c	F446dev-remote.elf
+Finished building: default.size.stdout
+ 
+
+17:46:51 Build Finished. 0 errors, 0 warnings. (took 436ms)
+

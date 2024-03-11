@@ -1,4 +1,4 @@
-16:12:46 **** Incremental Build of configuration Debug for project F446dev ****
+17:52:05 **** Incremental Build of configuration Debug for project F446dev ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F446xx -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 In file included from ../Core/Src/main.c:25:
@@ -11,11 +11,11 @@ Finished building target: F446dev.elf
 arm-none-eabi-size  F446dev.elf 
 arm-none-eabi-objdump -h -S F446dev.elf  > "F446dev.list"
    text	   data	    bss	    dec	    hex	filename
-  23780	    100	   2252	  26132	   6614	F446dev.elf
+  24376	    100	   2252	  26728	   6868	F446dev.elf
 Finished building: default.size.stdout
  
 Finished building: F446dev.list
  
 
-16:12:47 Build Finished. 0 errors, 1 warnings. (took 791ms)
+17:52:06 Build Finished. 0 errors, 1 warnings. (took 794ms)
 
