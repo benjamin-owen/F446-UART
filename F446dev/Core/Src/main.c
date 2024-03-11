@@ -111,21 +111,21 @@ int main(void)
 	  while (!LL_USART_IsActiveFlag_TXE(USART2));
   }
 
-  LoRa myLoRa;
-  myLoRa = newLoRa();
+  LoRa lora;
+  lora = newLoRa();
 
-  myLoRa.CS_port = SPI2_CS_GPIO_Port;
-  myLoRa.CS_pin = SPI2_CS_Pin;
-  myLoRa.reset_port = RFM_RST_GPIO_Port;
-  myLoRa.reset_pin = RFM_RST_Pin;
-  myLoRa.DIO0_port = RFM_G0_GPIO_Port;
-  myLoRa.DIO0_pin = RFM_G0_Pin;
-  myLoRa.hSPIx = &hspi2;
+  lora.CS_port = SPI2_CS_GPIO_Port;
+  lora.CS_pin = SPI2_CS_Pin;
+  lora.reset_port = RFM_RST_GPIO_Port;
+  lora.reset_pin = RFM_RST_Pin;
+  lora.DIO0_port = RFM_G0_GPIO_Port;
+  lora.DIO0_pin = RFM_G0_Pin;
+  lora.hSPIx = &hspi2;
 
-  myLoRa.frequency = 915;
+  lora.frequency = 915;
 
-  LoRa_reset(&myLoRa);
-  uint16_t lora_status = LoRa_init(&myLoRa);
+  LoRa_reset(&lora);
+  uint16_t lora_status = LoRa_init(&lora);
   if (lora_status == LORA_OK)
   {
   	  uint8_t msg[] = "LoRa OK\r\n";
@@ -159,11 +159,11 @@ int main(void)
 
   uint8_t recv_data[200];
   uint8_t packet_size;
-  LoRa_startReceiving(&myLoRa);
+  LoRa_startReceiving(&lora);
   while (1)
   {
 	  LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
-	  packet_size = LoRa_receive(&myLoRa, recv_data, 8);
+	  packet_size = LoRa_receive(&lora, recv_data, 8);
 	  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
 	  if (packet_size > 0)
 	  {
@@ -593,6 +593,8 @@ static void MX_GPIO_Init(void)
   LL_GPIO_Init(SPI2_CS_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
+  NVIC_SetPriority(EXTI0_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),0, 0));
+  NVIC_EnableIRQ(EXTI0_IRQn);
   NVIC_SetPriority(EXTI15_10_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),0, 0));
   NVIC_EnableIRQ(EXTI15_10_IRQn);
 

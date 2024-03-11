@@ -1,4 +1,4 @@
-Core/Src/LoRa.o: ../Core/Src/LoRa.c ../Core/Src/LoRa.h ../Core/Inc/main.h \
+Core/Src/LoRa.o: ../Core/Src/LoRa.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -35,8 +35,8 @@ Core/Src/LoRa.o: ../Core/Src/LoRa.c ../Core/Src/LoRa.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h
-../Core/Src/LoRa.h:
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h \
+ ../Core/Inc/LoRa.h ../Core/Inc/LoRa.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -75,3 +75,5 @@ Core/Src/LoRa.o: ../Core/Src/LoRa.c ../Core/Src/LoRa.h ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:
+../Core/Inc/LoRa.h:
+../Core/Inc/LoRa.h:

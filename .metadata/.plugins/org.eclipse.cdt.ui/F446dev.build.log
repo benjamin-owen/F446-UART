@@ -1,21 +1,10 @@
-17:52:05 **** Incremental Build of configuration Debug for project F446dev ****
+19:12:25 **** Incremental Build of configuration Debug for project F446dev ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F446xx -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-In file included from ../Core/Src/main.c:25:
-../Core/Src/LoRa.h:1:1: warning: multi-line comment [-Wcomment]
-    1 | // -------------------------------------------------- \\
-      | ^
-arm-none-eabi-gcc -o "F446dev.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/benjaminowen/F446-UART/F446dev/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F446dev.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: F446dev.elf
- 
 arm-none-eabi-size  F446dev.elf 
-arm-none-eabi-objdump -h -S F446dev.elf  > "F446dev.list"
    text	   data	    bss	    dec	    hex	filename
-  24376	    100	   2252	  26728	   6868	F446dev.elf
+  24600	    100	   2252	  26952	   6948	F446dev.elf
 Finished building: default.size.stdout
  
-Finished building: F446dev.list
- 
 
-17:52:06 Build Finished. 0 errors, 1 warnings. (took 794ms)
+19:12:26 Build Finished. 0 errors, 0 warnings. (took 479ms)
 

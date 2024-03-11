@@ -1,0 +1,10 @@
+/*
+ * App_LoRa.c
+ *
+ *  Created on: Mar 11, 2024
+ *      Author: benjaminowen
+ */
+
+#include "LoRa.h"
+
+// this file acts as a wrapper for the LoRa.c module

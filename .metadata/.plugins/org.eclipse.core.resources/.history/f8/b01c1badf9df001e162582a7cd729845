@@ -1,0 +1,22 @@
+/*
+ * global.h
+ *
+ *  Created on: Mar 11, 2024
+ *      Author: benjaminowen
+ */
+
+#ifndef INC_APP_CORE_GLOBAL_H_
+#define INC_APP_CORE_GLOBAL_H_
+
+//#ifdef __MAIN_H
+//	#define EXTERN
+//#else
+//	#define EXTERN extern
+//#endif
+
+#include "LoRa.h"
+
+// LoRa global definitions
+EXTERN LoRa myLoRa;
+
+#endif /* INC_APP_CORE_GLOBAL_H_ */

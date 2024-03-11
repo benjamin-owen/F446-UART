@@ -1,0 +1,18 @@
+F446 (receiver):
+
+SPI2
+
+CS: PB12
+RST: PC3
+DIO0: PC0
+
+
+---
+
+G031 (sender):
+
+SPI1
+
+CS: PA0
+RST: PA4
+DIO0: PA5

@@ -1559,3 +1559,104 @@ org.eclipse.core.runtime.CoreException: Target not available.
 
 !ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-03-11 17:52:13.112
 !MESSAGE Existing sessions are:
+!SESSION 2024-03-11 18:20:24.813 -----------------------------------------------
+eclipse.buildId=Version 1.14.0
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-03-11 18:20:39.640
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-03-11 18:20:39.641
+!MESSAGE Log4j2 initialized with config file /home/benjaminowen/F446-UART/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-03-11 18:20:45.313
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-03-11 18:22:59.634
+!MESSAGE Indexed 'F446dev' (30 sources, 117 headers) in 3.98 sec: 11,468 declarations; 53,835 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.22%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-03-11 18:23:23.165
+!MESSAGE Indexed 'F446dev' (30 sources, 117 headers) in 2.82 sec: 11,468 declarations; 53,835 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.22%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-03-11 18:31:23.485
+!MESSAGE Indexed 'F446dev' (30 sources, 117 headers) in 2.7 sec: 11,468 declarations; 53,836 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.22%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-03-11 18:35:12.510
+!MESSAGE Indexed 'F446dev' (30 sources, 117 headers) in 1.9 sec: 11,468 declarations; 53,836 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.22%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-03-11 18:35:24.700
+!MESSAGE Indexed 'F446dev' (30 sources, 117 headers) in 1.59 sec: 11,468 declarations; 53,836 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.22%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-03-11 18:36:53.454
+!MESSAGE Indexed 'F446dev' (30 sources, 117 headers) in 1.66 sec: 11,468 declarations; 53,836 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.22%)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2024-03-11 18:36:59.473
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /home/benjaminowen/F446-UART/F446dev/Debug/F446dev.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1038)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2024-03-11 18:36:59.474
+!MESSAGE /home/benjaminowen/F446-UART/F446dev/Debug/F446dev.elf not found
+!STACK 0
+java.io.FileNotFoundException: /home/benjaminowen/F446-UART/F446dev/Debug/F446dev.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1038)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-03-11 18:37:16.679
+!MESSAGE Indexed 'F446dev' (30 sources, 117 headers) in 2.47 sec: 11,468 declarations; 53,836 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.22%)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2024-03-11 18:37:18.775
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /home/benjaminowen/F446-UART/F446dev/Debug/F446dev.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1038)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2024-03-11 18:37:18.776
+!MESSAGE /home/benjaminowen/F446-UART/F446dev/Debug/F446dev.elf not found
+!STACK 0
+java.io.FileNotFoundException: /home/benjaminowen/F446-UART/F446dev/Debug/F446dev.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1038)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-03-11 18:49:02.838
+!MESSAGE Indexed 'F446dev' (30 sources, 118 headers) in 1.7 sec: 11,468 declarations; 53,839 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.22%)

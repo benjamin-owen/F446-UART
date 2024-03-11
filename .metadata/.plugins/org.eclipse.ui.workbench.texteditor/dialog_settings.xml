@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="LL_DMA_Disable"/>
+		<item key="selection" value="lora"/>
 		<item key="wrap" value="true"/>
-		<item key="casesensitive" value="false"/>
+		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="myLoRa"/>
+			<item value="reset_pin"/>
+			<item value="reset"/>
+			<item value="RSt"/>
+			<item value="CS_pin"/>
 			<item value="LL_DMA_Disable"/>
 			<item value="LL_DMA_DisableChannel"/>
 			<item value="LL_DMA_EnableStream"/>
@@ -17,11 +22,13 @@
 			<item value="dma"/>
 		</list>
 		<list key="replacehistory">
+			<item value="lora"/>
+			<item value="LORA"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="666"/>
-		<item key="DIALOG_Y_ORIGIN" value="263"/>
+		<item key="DIALOG_X_ORIGIN" value="1156"/>
+		<item key="DIALOG_Y_ORIGIN" value="248"/>
 		<item key="DIALOG_WIDTH" value="339"/>
 		<item key="DIALOG_HEIGHT" value="395"/>
 		<item key="DIALOG_FONT_NAME" value="1|Noto Sans|10.0|0|GTK|1|"/>

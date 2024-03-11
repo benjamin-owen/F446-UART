@@ -1,71 +1,8 @@
-17:46:46 **** Incremental Build of configuration Debug for project F446dev-remote ****
+19:12:20 **** Incremental Build of configuration Debug for project F446dev ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G031xx -DUSE_FULL_LL_DRIVER -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-In file included from ../Core/Src/main.c:24:
-../Core/Src/LoRa.h:1:1: warning: multi-line comment [-Wcomment]
-    1 | // -------------------------------------------------- \\
-      | ^
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:142:5: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
-  142 |     memset(send_data, NULL, 200);
-      |     ^~~~~~
-../Core/Src/main.c:25:1: note: include '<string.h>' or provide a declaration of 'memset'
-   24 | #include "LoRa.h"
-  +++ |+#include <string.h>
-   25 | /* USER CODE END Includes */
-../Core/Src/main.c:142:5: warning: incompatible implicit declaration of built-in function 'memset' [-Wbuiltin-declaration-mismatch]
-  142 |     memset(send_data, NULL, 200);
-      |     ^~~~~~
-../Core/Src/main.c:142:5: note: include '<string.h>' or provide a declaration of 'memset'
-../Core/Src/main.c:142:23: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-  142 |     memset(send_data, NULL, 200);
-      |                       ^~~~
-      |                       |
-      |                       void *
-../Core/Src/main.c:142:23: note: expected 'int' but argument is of type 'void *'
-../Core/Src/main.c:143:5: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
-  143 |     snprintf(send_data, sizeof(send_data), "1234abcd\r\n");
-      |     ^~~~~~~~
-../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
-   24 | #include "LoRa.h"
-  +++ |+#include <stdio.h>
-   25 | /* USER CODE END Includes */
-../Core/Src/main.c:143:5: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
-  143 |     snprintf(send_data, sizeof(send_data), "1234abcd\r\n");
-      |     ^~~~~~~~
-../Core/Src/main.c:143:5: note: include '<stdio.h>' or provide a declaration of 'snprintf'
-../Core/Src/main.c:153:34: warning: pointer targets in passing argument 2 of 'LoRa_transmit' differ in signedness [-Wpointer-sign]
-  153 |           LoRa_transmit(&myLoRa, send_data, 8, 100);
-      |                                  ^~~~~~~~~
-      |                                  |
-      |                                  char *
-In file included from ../Core/Src/main.c:24:
-../Core/Src/LoRa.h:128:45: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
-  128 | uint8_t LoRa_transmit(LoRa* _LoRa, uint8_t* data, uint8_t length, uint16_t timeout);
-      |                                    ~~~~~~~~~^~~~
-arm-none-eabi-gcc -o "F446dev-remote.elf" @"objects.list"   -mcpu=cortex-m0plus -T"/home/benjaminowen/F446-UART/F446dev-remote/STM32G031K8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F446dev-remote.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: F446dev-remote.elf
- 
-arm-none-eabi-size  F446dev-remote.elf 
-arm-none-eabi-objdump -h -S F446dev-remote.elf  > "F446dev-remote.list"
-   text	   data	    bss	    dec	    hex	filename
-  18404	    100	   2004	  20508	   501c	F446dev-remote.elf
-Finished building: default.size.stdout
- 
-Finished building: F446dev-remote.list
- 
-17:46:50 **** Incremental Build of configuration Debug for project F446dev-remote ****
-make -j8 all 
-arm-none-eabi-size  F446dev-remote.elf 
-   text	   data	    bss	    dec	    hex	filename
-  18404	    100	   2004	  20508	   501c	F446dev-remote.elf
-Finished building: default.size.stdout
- 
-17:50:04 **** Incremental Build of configuration Debug for project F446dev ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F446xx -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F446xx -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/App/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 In file included from ../Core/Src/main.c:25:
-../Core/Src/LoRa.h:1:1: warning: multi-line comment [-Wcomment]
+../Core/App/Inc/LoRa.h:1:1: warning: multi-line comment [-Wcomment]
     1 | // -------------------------------------------------- \\
       | ^
 arm-none-eabi-gcc -o "F446dev.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/benjaminowen/F446-UART/F446dev/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F446dev.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -74,44 +11,15 @@ Finished building target: F446dev.elf
 arm-none-eabi-size  F446dev.elf 
 arm-none-eabi-objdump -h -S F446dev.elf  > "F446dev.list"
    text	   data	    bss	    dec	    hex	filename
-  24168	    100	   2252	  26520	   6798	F446dev.elf
+  24600	    100	   2252	  26952	   6948	F446dev.elf
 Finished building: default.size.stdout
  
 Finished building: F446dev.list
  
-17:50:54 **** Incremental Build of configuration Debug for project F446dev ****
+19:12:25 **** Incremental Build of configuration Debug for project F446dev ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F446xx -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-In file included from ../Core/Src/main.c:25:
-../Core/Src/LoRa.h:1:1: warning: multi-line comment [-Wcomment]
-    1 | // -------------------------------------------------- \\
-      | ^
-arm-none-eabi-gcc -o "F446dev.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/benjaminowen/F446-UART/F446dev/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F446dev.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: F446dev.elf
- 
 arm-none-eabi-size  F446dev.elf 
-arm-none-eabi-objdump -h -S F446dev.elf  > "F446dev.list"
    text	   data	    bss	    dec	    hex	filename
-  24280	    100	   2252	  26632	   6808	F446dev.elf
+  24600	    100	   2252	  26952	   6948	F446dev.elf
 Finished building: default.size.stdout
- 
-Finished building: F446dev.list
- 
-17:52:05 **** Incremental Build of configuration Debug for project F446dev ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F446xx -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-In file included from ../Core/Src/main.c:25:
-../Core/Src/LoRa.h:1:1: warning: multi-line comment [-Wcomment]
-    1 | // -------------------------------------------------- \\
-      | ^
-arm-none-eabi-gcc -o "F446dev.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/benjaminowen/F446-UART/F446dev/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F446dev.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: F446dev.elf
- 
-arm-none-eabi-size  F446dev.elf 
-arm-none-eabi-objdump -h -S F446dev.elf  > "F446dev.list"
-   text	   data	    bss	    dec	    hex	filename
-  24376	    100	   2252	  26728	   6868	F446dev.elf
-Finished building: default.size.stdout
- 
-Finished building: F446dev.list
  
